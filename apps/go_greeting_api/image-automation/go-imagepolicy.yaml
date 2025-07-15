@@ -1,0 +1,11 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: go-api
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: go-api
+  policy:
+    semver:
+      range: "*"

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-api
+  namespace: greeting-apis
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: rails-api
+  template:
+    metadata:
+      labels:
+        app: rails-api
+    spec:
+      containers:
+        - name: rails-api
+          image: balenabdalla/rails-greeting-api:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SECRET_KEY_BASE
+              value: a24a513535dffd2f5611ff86d70592cb

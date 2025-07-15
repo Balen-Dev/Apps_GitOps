@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-api
+  namespace: greeting-apis
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nodejs-api
+  template:
+    metadata:
+      labels:
+        app: nodejs-api
+    spec:
+      containers:
+        - name: nodejs-api
+          image: balenabdalla/nodejs-greeting-api:latest
+          ports:
+            - containerPort: 8081
