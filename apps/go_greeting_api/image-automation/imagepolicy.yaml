@@ -7,5 +7,5 @@ spec:
   imageRepositoryRef:
     name: go-greeting-api
   policy:
-    semver:
-      range: "*"
+    alphabetical:
+      order: asc

@@ -7,5 +7,5 @@ spec:
   imageRepositoryRef:
     name: nodejs-greeting-api
   policy:
-    semver:
-      range: "*"
+    alphabetical:
+      order: asc
