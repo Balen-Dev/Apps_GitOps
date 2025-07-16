@@ -10,7 +10,7 @@ spec:
       chart: ./charts/greeting-api
       sourceRef:
         kind: GitRepository
-        name: greeting-apis-repo
+        name: gitops-apps
         namespace: flux-system
   values:
     nameOverride: "nodejs-api"
