@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: go-greeting-api
+  namespace: greeting-apis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/greeting-api
+      sourceRef:
+        kind: GitRepository
+        name: greeting-apis-repo
+        namespace: flux-system
+  values:
+    nameOverride: "go-api"
+    fullnameOverride: "go-api"
+    replicaCount: 4
+    image:
+      repository: balenabdalla/go-greeting-api
+      tag: latest # {"$imagepolicy": "flux-system:go-greeting-api:tag"}
+    service:
+      port: 80
+      targetPort: 8080
+    namespace: greeting-apis

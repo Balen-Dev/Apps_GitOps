@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dotnet-greeting-api
+  namespace: greeting-apis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/greeting-api
+      sourceRef:
+        kind: GitRepository
+        name: greeting-apis-repo
+        namespace: flux-system
+  values:
+    nameOverride: "dotnet-api"
+    fullnameOverride: "dotnet-api"
+    replicaCount: 4
+    image:
+      repository: balenabdalla/dotnet-greeting-api
+      tag: tag: latest # {"$imagepolicy": "flux-system:dotnet-greeting-api:tag"}
+    service:
+      port: 80
+      targetPort: 8082
+    namespace: greeting-apis

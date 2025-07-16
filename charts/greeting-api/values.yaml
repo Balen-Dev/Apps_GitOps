@@ -1,0 +1,28 @@
+# Default values for greeting-apis
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+replicaCount: 4
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080 # Default, will be overridden per app
+
+namespace: greeting-apis
+
+# Environment variables (used by Rails)
+env: []
+
+podLabels: {}
+podAnnotations: {}
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}

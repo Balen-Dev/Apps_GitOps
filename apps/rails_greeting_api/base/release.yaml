@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rails-greeting-api
+  namespace: greeting-apis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/greeting-api
+      sourceRef:
+        kind: GitRepository
+        name: greeting-apis-repo
+        namespace: flux-system
+  values:
+    nameOverride: "rails-api"
+    fullnameOverride: "rails-api"
+    replicaCount: 4
+    image:
+      repository: balenabdalla/rails-greeting-api
+      tag: latest # {"$imagepolicy": "flux-system:rails-greeting-api:tag"}
+    service:
+      port: 80
+      targetPort: 3000
+    namespace: greeting-apis
+    env:
+      - name: SECRET_KEY_BASE
+        value: a24a513535dffd2f5611ff86d70592cb

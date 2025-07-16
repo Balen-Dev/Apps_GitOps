@@ -1,0 +1,7 @@
+apiVersion: v2
+name: greeting-api
+icon: https://img.icons8.com/?size=100&id=fncdgSAvOcfI&format=png&color=000000
+description: A Helm chart for greeting API applications
+type: application
+version: 0.1.0
+appVersion: "1.0"

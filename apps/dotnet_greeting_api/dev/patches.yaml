@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/values/replicaCount
+  value: 2

@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nodejs-greeting-api
+  namespace: greeting-apis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/greeting-api
+      sourceRef:
+        kind: GitRepository
+        name: greeting-apis-repo
+        namespace: flux-system
+  values:
+    nameOverride: "nodejs-api"
+    fullnameOverride: "nodejs-api"
+    replicaCount: 4
+    image:
+      repository: balenabdalla/nodejs-greeting-api
+      tag: latest # {"$imagepolicy": "flux-system:nodejs-greeting-api:tag"}
+    service:
+      port: 80
+      targetPort: 8081
+    namespace: greeting-apis
